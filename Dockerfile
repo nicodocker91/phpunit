@@ -7,9 +7,11 @@ RUN curl -Ls https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit && \
     # Then here we go to install the whole universe for xdebug to enable the code coverage...
     apk update && \
-    apk add --no-cache g++ make autoconf && \
+    apk add --no-cache g++ make autoconf zlib-dev && \
     docker-php-source extract && \
     pecl install xdebug && \
+    docker-php-ext-configure zip && \
+    docker-php-ext-install zip && \
     docker-php-ext-enable xdebug && \
     docker-php-source delete && \
     echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
