@@ -10,7 +10,6 @@ RUN curl -Ls https://phar.phpunit.de/phpunit.phar > /usr/local/bin/phpunit && \
     apk add --no-cache g++ make autoconf zlib-dev && \
     docker-php-source extract && \
     pecl install xdebug && \
-    docker-php-ext-configure zip && \
     docker-php-ext-install zip && \
     docker-php-ext-enable xdebug && \
     docker-php-source delete && \
